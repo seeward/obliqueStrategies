@@ -1,0 +1,36 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        config {
+            keyAlias 'obitstrat'
+            keyPassword 'artworker'
+            storeFile file('C:/Users/christian/AndroidStudioProjects/keys/keystore.jks')
+            storePassword 'artworker'
+        }
+    }
+    compileSdkVersion 20
+    buildToolsVersion '20.0.0'
+    defaultConfig {
+        applicationId 'com.seeward.obliquestrategies'
+        minSdkVersion 19
+        targetSdkVersion 20
+        versionCode 1
+        versionName '1.0'
+    }
+    buildTypes {
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+    }
+    productFlavors {
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    wearApp project(':wear')
+    compile 'com.google.android.gms:play-services-wearable:+'
+}
